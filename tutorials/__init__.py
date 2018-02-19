@@ -90,7 +90,19 @@ def parallelogram():
 def surface_data(s):
   return np.array(s.get_data()).reshape(100,100,4)[:,:,-1].reshape(100*100)
 
-
+    # Text
+    #surface = cairo.SVGSurface("example.svg", 300, 100)
+    #cr = cairo.Context(surface)
+    #cr.set_source_rgb(0.1, 0.1, 0.1)
+    #context.scale(100, 100) 
+        
+    #cr.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL, 
+    #    cairo.FONT_WEIGHT_NORMAL)
+    #cr.set_font_size(13)
+    
+    #cr.move_to(20, 30)
+    #cr.show_text("Most relationships seem so transitory")
+    #display_cairo_surface(surface)
   
 def foo(): 
   return 1
