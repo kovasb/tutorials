@@ -2,7 +2,8 @@ import cairo
 
 from io import BytesIO
 from IPython.core import display
-
+import numpy as np
+import math
 
 def display_cairo_surface(surface):
     """Displayhook function for Surfaces Images, rendered as PNG."""
