@@ -91,11 +91,10 @@ def parallelogram(context):
                 0, 0 )
   context.transform(mtx)
   context.rotate(np.random.rand() * math.pi)
-
   context.rectangle(0, 0, 1, 1)
-
   context.fill()
-  return surface
+  context.restore()
+
 
 def surface_data(s):
   return np.array(s.get_data()).reshape(100,100,4)[:,:,-1].reshape(100*100)
