@@ -113,6 +113,22 @@ def surface_data(s):
     #cr.move_to(20, 30)
     #cr.show_text("Most relationships seem so transitory")
     #display_cairo_surface(surface)
+    
+    
+def raster(dims, directives):
+  surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, dims[0], dims[1])
+  context = cairo.Context(surface) 
+  for d in directives:
+    d(context)
+  return surface  
+
+def raster_png(dims, directives):
+  s = raster(dims, directives)
+  return display_cairo_surface(s)
+
+def raster_np(dims, directives):
+  s = raster(dims, directives)
+  return np.array(s.get_data()).reshape(dims[0],dims[1],4)
   
 def foo(): 
   return 1
