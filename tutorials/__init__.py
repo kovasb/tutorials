@@ -22,11 +22,9 @@ def display_cairo_context(ctx):
     surface = ctx.get_target()
     return display_cairo_surface(surface)
   
-def ellipse():
-  surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 100, 100)
-  context = cairo.Context(surface)
+def ellipse(context):
+  context.save()
   #context.scale(100, 100) 
-  context.set_source_rgba(0,0,0,1)
   s = np.random.rand() / 3
   #context.transform(mtx)
   context.scale(100,100)
@@ -39,14 +37,12 @@ def ellipse():
   #context.rotate(np.random.rand() * math.pi)
   context.arc(0,0, s, 0, 2*math.pi)
   context.fill()
-  return surface
+  context.restore()
 
-def triangle():
+def triangle(context):
     # Triangle
-  surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 100, 100)
-  context = cairo.Context(surface)
+  context.save()  
   context.scale(25, 25)
-  context.set_source_rgba(0,0,0,1)
   s = np.random.rand() / 2
   displacement_x = (np.random.rand() + 1)
   displacement_y = (np.random.rand() + 1)
@@ -59,17 +55,31 @@ def triangle():
   context.line_to(0, 0)
   #context.stroke()
   context.fill()
-  return surface
+  context.restore()
 
-def parallelogram():
-  surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 100, 100)
-  context = cairo.Context(surface)
-  context.set_source_rgb(0,0,0)
+def parallelogram(context):
+  context.save()
   #context.rectangle(0, 0, 30, 30)
   #context.fill()
   context.scale(25, 25) 
   displacement_x = (np.random.rand() + 1)
   displacement_y = (np.random.rand() + 1)
+  
+  context.translate(displacement_x, displacement_y)
+
+  shear_x = (np.random.rand() - 0.5) / 2
+  shear_y = (np.random.rand() - 0.5) / 2
+  
+  mtx = cairo.Matrix(1,shear_x,
+                shear_y, 1,
+                0, 0 )
+  context.transform(mtx)
+  context.rotate(np.random.rand() * math.pi)
+
+  context.rectangle(0, 0, 1, 1)
+
+  context.fill()
+  context.restore()
   
   context.translate(displacement_x, displacement_y)
 
