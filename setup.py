@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='tutorials',
-      version='0.01',
+      version='0.02',
       description='',
       url='',
       author='Kovas Boguta',
