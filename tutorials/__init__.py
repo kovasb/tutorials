@@ -80,20 +80,6 @@ def parallelogram(context):
 
   context.fill()
   context.restore()
-  
-  context.translate(displacement_x, displacement_y)
-
-  shear_x = (np.random.rand() - 0.5) / 2
-  shear_y = (np.random.rand() - 0.5) / 2
-  
-  mtx = cairo.Matrix(1,shear_x,
-                shear_y, 1,
-                0, 0 )
-  context.transform(mtx)
-  context.rotate(np.random.rand() * math.pi)
-  context.rectangle(0, 0, 1, 1)
-  context.fill()
-  context.restore()
 
 
 def surface_data(s):
